@@ -3,7 +3,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 
-//int a[25]={10,9,8,7,6,5,4,3,2,1};
+int a[25]={10,9,8,7,6};
 struct node
 {
  int info;
@@ -279,13 +279,13 @@ void main()
  int i,n,a[50];
  node root;
 //color 1-red 0-black
-printf("enter the number of elements\n");
-scanf("%d",&n);
-for(i=0;i<n;i++)
+//printf("enter the number of elements\n");
+//scanf("%d",&n);
+for(i=0;i<5;i++)
 {
    scanf("%d",&a[i]);
 }
- for(i=0;i<n;i++)
+ for(i=0;i<5;i++)
   {
     if(i==0)
     {
