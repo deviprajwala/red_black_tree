@@ -1,0 +1,30 @@
+enter the number of elements
+Item inserted is 1
+Item inserted is 9
+Item inserted is 2
+Item inserted is 8
+Item inserted is 3
+Item inserted is 7
+Item inserted is 4
+Item inserted is 6
+Item inserted is 5
+Item inserted is 11
+Item inserted is 19
+Item inserted is 12
+Item inserted is 1
+Item inserted is 8
+Item inserted is 14
+Item inserted is 17
+Item inserted is 15
+Item inserted is 14
+Item inserted is 22
+Item inserted is 33
+Item inserted is 44
+Item inserted is 88
+Item inserted is 4
+Item inserted is 5
+Item inserted is 8
+successful insertion
+inorder traversal is
+1 black
+8 red
