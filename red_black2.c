@@ -258,6 +258,7 @@ void verify(node root)
   {
    exit(0);
   }
+  verify2(root);
  
 }
 void verify2(node x)
