@@ -3,7 +3,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 
-int a[25]={10,9,8,7,6};
+//int a[25]={10,9,8,7,6};
 struct node
 {
  int info;
@@ -19,14 +19,15 @@ typedef struct node *node;
 void rb_insert_fix(node root,node temp);
 node rb_insert(int item,node root);
 node getnode();
-void left_rotate(node root,node z);
-void right_rotate(node root,node z);
+node left_rotate(node root,node z);
+node right_rotate(node root,node z);
 void inorder(node root);
 int height(node root);
 void print2(int h[10],int hmax,node root);
 void print(node root);
 void verify(node root);
 void verify2(node x);
+void verify3(node x);
 
 node getnode()
 {
@@ -98,8 +99,7 @@ return root;
 
 }
 
-
-void left_rotate(node root,node x)
+node left_rotate(node root,node x)
 {
   node y;
   y=x->rlink;
@@ -123,8 +123,9 @@ void left_rotate(node root,node x)
   }
   y->llink=x;
   x->par=y;
+  return root;
 }
-void right_rotate(node root,node x)
+node right_rotate(node root,node x)
 {
   node y;
   y=x->llink;
@@ -148,6 +149,7 @@ void right_rotate(node root,node x)
   }
   y->rlink=x;
   x->par=y;
+  return root;
  
 }
 
@@ -172,17 +174,17 @@ void rb_insert_fix(node root,node temp)
         else if(temp==parent->rlink)
            {
              temp=parent;
-             left_rotate(temp,root);
+             root=left_rotate(temp,root);
            }
              parent->color=0;
              gparent->color=1;
              x=gparent;
-             right_rotate(x,root);
+             root=right_rotate(x,root);
            sing:
              parent->color=0;
              gparent->color=1;
              x=gparent;
-             right_rotate(x,root);
+             root=right_rotate(x,root);
 
        }
      else
@@ -199,18 +201,18 @@ void rb_insert_fix(node root,node temp)
         else if(temp==parent->llink)
            {
              temp=parent;
-             right_rotate(temp,root);
+             root=right_rotate(temp,root);
            }
              parent->color=0;
              gparent->color=1;
              x=gparent;
-             left_rotate(x,root);
+             root=left_rotate(x,root);
            
         dance:
              parent->color=0;
              gparent->color=1;
              x=gparent;
-             left_rotate(x,root);
+             root=left_rotate(x,root);
            
 
        }
@@ -256,10 +258,17 @@ void verify(node root)
   {
    exit(0);
   }
-  verify2(root->rlink);
-  verify2(root->llink);
+ 
 }
 void verify2(node x)
+{
+  while(x->rlink!=NULL)
+  {
+  verify3(x->rlink);
+  verify3(x->llink);
+  }
+}
+void verify3(node x)
 { 
  if(x->color==1)
  {
@@ -272,19 +281,21 @@ void verify2(node x)
       exit(0);
      }
   }
+  verify2(x->rlink);
+  verify2(x->llink);
 }
 
 void main()
 {
- int i,n,a[50];
+ int i,n,a[5]={10,9,8,7,6};
  node root;
 //color 1-red 0-black
 //printf("enter the number of elements\n");
 //scanf("%d",&n);
-for(i=0;i<5;i++)
-{
-   scanf("%d",&a[i]);
-}
+//for(i=0;i<5;i++)
+//{
+  // scanf("%d",&a[i]);
+//}
  for(i=0;i<5;i++)
   {
     if(i==0)
