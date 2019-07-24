@@ -25,6 +25,8 @@ void inorder(node root);
 int height(node root);
 void print2(int h[10],int hmax,node root);
 void print(node root);
+void verify(node root);
+void verify2(node x);
 
 node getnode()
 {
@@ -82,6 +84,7 @@ if(h>=2)
  {
   rb_insert_fix(root,temp);
  }
+  verify(root);
 }
 
 else if(root==NULL)
@@ -246,6 +249,29 @@ int height(node root)
      else
          return (rdepth+1);
 
+}
+void verify(node root)
+{
+  if(root->color!=0)
+  {
+   exit(0);
+  }
+  verify2(root->rlink);
+  verify2(root->llink);
+}
+void verify2(node x)
+{ 
+ if(x->color==1)
+ {
+   if(x->rlink!=NULL&&x->rlink->color==1)
+     {
+      exit(0);
+     }
+   else if(x->llink!=NULL&&x->llink->color==1)
+     {
+      exit(0);
+     }
+  }
 }
 
 void main()
