@@ -3,7 +3,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 
-//int a[25]={10,9,8,7,6};
+//int a[25]={10,9,8,7,6,5,4,3,2,1};
 struct node
 {
  int info;
@@ -16,7 +16,7 @@ typedef struct node *node;
 
 
 
-void rb_insert_fix(node root,node temp);
+node rb_insert_fix(node root,node temp);
 node rb_insert(int item,node root);
 node getnode();
 node left_rotate(node root,node z);
@@ -25,7 +25,7 @@ void inorder(node root);
 int height(node root);
 void print2(int h[10],int hmax,node root);
 void print(node root);
-void verify(node root);
+node verify(node root);
 void verify2(node x);
 void verify3(node x);
 
@@ -83,9 +83,9 @@ if(root!=NULL)
 
 if(h>=2)
  {
-  rb_insert_fix(root,temp);
+  root=rb_insert_fix(root,temp);
  }
-  verify(root);
+ 
 }
 
 else if(root==NULL)
@@ -149,11 +149,11 @@ node right_rotate(node root,node x)
   }
   y->rlink=x;
   x->par=y;
-  return root;
+  return y;
  
 }
 
-void rb_insert_fix(node root,node temp)
+node rb_insert_fix(node root,node temp)
 {
   node parent,gparent,unc,x;
   parent=temp->par;
@@ -218,6 +218,8 @@ void rb_insert_fix(node root,node temp)
        }
  }         
 root->color=0; 
+root=verify(root);
+return root;
 }
 
 void inorder(node root)
@@ -252,20 +254,26 @@ int height(node root)
          return (rdepth+1);
 
 }
-void verify(node root)
+node verify(node root)
 {
   if(root->color!=0)
   {
    exit(0);
   }
   verify2(root);
+  return root;
  
 }
 void verify2(node x)
 {
-  while(x->rlink!=NULL)
+  if(x->rlink!=NULL)
   {
   verify3(x->rlink);
+  }goto lchild;
+
+lchild:
+  if(x->llink!=NULL)
+  {
   verify3(x->llink);
   }
 }
@@ -275,29 +283,41 @@ void verify3(node x)
  {
    if(x->rlink!=NULL&&x->rlink->color==1)
      {
+      printf("ERROR red parent red child");
       exit(0);
      }
    else if(x->llink!=NULL&&x->llink->color==1)
      {
+      printf("ERROR red parent red child");
       exit(0);
      }
   }
+  
+  if(x->rlink!=NULL)
+  {
   verify2(x->rlink);
+  }goto lchild1;
+
+lchild1:
+  if(x->llink!=NULL)
+  {
   verify2(x->llink);
+  }
+
 }
 
 void main()
 {
- int i,n,a[5]={10,9,8,7,6};
+ int i,n,a[10];
  node root;
 //color 1-red 0-black
-//printf("enter the number of elements\n");
-//scanf("%d",&n);
-//for(i=0;i<5;i++)
-//{
-  // scanf("%d",&a[i]);
-//}
- for(i=0;i<5;i++)
+printf("enter the number of elements\n");
+scanf("%d",&n);
+for(i=0;i<n;i++)
+{
+   scanf("%d",&a[i]);
+}
+ for(i=0;i<n;i++)
   {
     if(i==0)
     {
