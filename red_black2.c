@@ -308,7 +308,7 @@ lchild1:
 
 void main()
 {
- int i,n,a[10];
+ int i,n,a[100];
  node root;
 //color 1-red 0-black
 printf("enter the number of elements\n");
