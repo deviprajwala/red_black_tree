@@ -167,23 +167,21 @@ node rb_insert_fix(node root,node temp)
             temp->par->par->color=1;
             temp=temp->par->par;
             }
-         }
-         else if(temp==temp->par->rlink)
-         {
+         
+            else if(temp==temp->par->rlink)
+           {
            temp=temp->par;
            root=left_rotate(root,temp);
+           }
+        } 
+         temp->par->color=0;
+         temp->par->par->color=1;
+         y=temp->par->par;
+         root=right_rotate(root,y);
            
-         }
-         else
-         { temp->par->color=0;
-           temp->par->par->color=1;
-           y=temp->par->par;
-           root=right_rotate(root,y);
-           
-         }
-         
+        
       }
-     else
+      else
       {  
          if(temp->par->par->llink!=NULL) 
            {
@@ -195,26 +193,20 @@ node rb_insert_fix(node root,node temp)
              temp->par->par->color=1;
              temp=temp->par->par;
              }
-            }
-            
-        
-           else if(temp==temp->par->llink)
-           {
+    
+             else if(temp==temp->par->llink)
+             {
              temp=temp->par;
              root=right_rotate(root,temp);
-              
-           }
+             }
           
-          else
-           {
           temp->par->color=0;
           temp->par->par->color=1;
           y=temp->par->par;
           root=left_rotate(root,y);
             
-          }
-
-       }
+         }
+     }
  
  }         
 root->color=0; 
