@@ -48,8 +48,6 @@ node rb_insert(int item,node root)
  temp->color=1;
  temp->info=item;
 
- int h;
- 
  
 if(root!=NULL)
 {
@@ -102,7 +100,7 @@ node left_rotate(node root,node x)
   if(y->llink!=NULL)
   {
      y->llink->par=x;
-     
+    
   }
   y->par=x->par;
   if(x->par==NULL)
@@ -162,52 +160,85 @@ node rb_insert_fix(node root,node temp)
     if(parent==gparent->llink)
      {
        if(gparent->rlink!=NULL)
-       unc=gparent->rlink;
-          if(unc->color==1)
-          {
+        {   
+            unc=gparent->rlink;
+            if(unc->color!=1) 
             parent->color=0;
             unc->color=0;
             gparent->color=1;
             temp=gparent;
-           
-           }
-           else if(temp==parent->rlink)
+            if(temp->par!=NULL&&temp->par->color==1)
+            {
+            parent=temp->par;
+            gparent=parent->par;
+            }
+         }
+         else if(temp==parent->rlink)
+         {
+           temp=parent;
+           root=left_rotate(root,temp);
+            if(temp->par!=NULL&&temp->par->color==1)
+            {
+            parent=temp->par;
+            gparent=parent->par;
+            }
+         }
+         else
+         { parent->color=0;
+           gparent->color=1;
+           x=gparent;
+           root=right_rotate(root,x);
+            if(temp->par!=NULL&&temp->par->color==1)
+            {
+            parent=temp->par;
+            gparent=parent->par;
+            }
+         }
+         
+      }
+     else
+      {  
+         if(gparent->llink!=NULL) 
+           {
+             unc=gparent->llink;
+             if(unc->color!=1) 
+             parent->color=0;
+             unc->color=0;
+             gparent->color=1;
+             temp=gparent;
+             if(temp->par!=NULL&&temp->par->color==1)
+               {
+                 parent=temp->par;
+                 gparent=parent->par;
+               }
+            }
+            
+        
+           else if(temp==parent->llink)
            {
              temp=parent;
-             root=left_rotate(root,temp);
-           }
-           else
-           { parent->color=0;
-             gparent->color=1;
-             x=gparent;
-             root=right_rotate(root,x);
-            }
-       }
-     else
-      {
-       if(gparent->llink!=NULL) 
-       unc=gparent->llink;
-          if(unc->color==1)
-          {
-            parent->color=0;
-            unc->color=0;
-            gparent->color=1;
-            temp=gparent;
-            
-          }
-          else if(temp==parent->llink)
-          {
-             temp=parent;
              root=right_rotate(root,temp);
-          }
+              if(temp->par!=NULL&&temp->par->color==1)
+            {
+            parent=temp->par;
+            gparent=parent->par;
+            }
+           }
+          
           else
-          {
+           {
           parent->color=0;
           gparent->color=1;
           x=gparent;
           root=left_rotate(root,x);
-          } 
-      }
+            if(temp->par!=NULL&&temp->par->color==1)
+            {
+            parent=temp->par;
+            gparent=parent->par;
+            }
+          }
+
+       }
  
  }         
 root->color=0; 
@@ -286,15 +317,15 @@ return;
 
 void main()
 {
- int i,n=25,a[100]={1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25};
+ int i,n=10,a[100];//={1,2,3,4,5,6,7,8,9,10};
  node root;
 //color 1-red 0-black
 //printf("enter the number of elements\n");
-//scanf("%d",&n);
-//for(i=0;i<n;i++)
- //{
-   //scanf("%d",&a[i]);
- // }
+scanf("%d",&n);
+for(i=0;i<n;i++)
+ {
+   scanf("%d",&a[i]);
+ }
  for(i=0;i<n;i++)
   {
     if(i==0)
