@@ -1,0 +1,10 @@
+Item inserted is 5
+Item inserted is 4
+Item inserted is 3
+Item inserted is 2
+Item inserted is 1
+successful insertion
+inorder traversal is
+1 red
+2 black
+3 red
