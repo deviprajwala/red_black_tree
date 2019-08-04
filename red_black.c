@@ -157,10 +157,9 @@ node rb_insert_fix(node root,node temp)
   {
     if(temp->par==temp->par->par->llink)
      {
-       if(temp->par->rlink!=NULL)
-        {   
+          
             y=temp->par->par->rlink;
-            if(y->color==1)
+            if(y!=NULL&&y->color==1)
             { 
             temp->par->color=0;
             y->color=0;
@@ -173,20 +172,19 @@ node rb_insert_fix(node root,node temp)
            temp=temp->par;
            root=left_rotate(root,temp);
            }
-        } 
-         temp->par->color=0;
-         temp->par->par->color=1;
-         y=temp->par->par;
-         root=right_rotate(root,y);
-           
+           else
+           {
+           temp->par->color=0;
+           temp->par->par->color=1;
+           y=temp->par->par;
+           root=right_rotate(root,y);
+           }
         
       }
       else
       {  
-         if(temp->par->par->llink!=NULL) 
-           {
              y=temp->par->par->llink;
-             if(y->color==1) 
+             if(y!=NULL&&y->color==1) 
              {
              temp->par->color=0;
              y->color=0;
@@ -199,13 +197,14 @@ node rb_insert_fix(node root,node temp)
              temp=temp->par;
              root=right_rotate(root,temp);
              }
-          
-          temp->par->color=0;
-          temp->par->par->color=1;
-          y=temp->par->par;
-          root=left_rotate(root,y);
-            
-         }
+            else
+             {
+             temp->par->color=0;
+             temp->par->par->color=1;
+             y=temp->par->par;
+             root=left_rotate(root,y);
+             }
+         
      }
  
  }         
@@ -285,15 +284,15 @@ return;
 
 void main()
 {
- int i,n=10,a[100]={1,2,3,4,5,6,7,8,9,10};
+ int i,n=10,a[100];//={1,2,3,4,5,6,7,8,9,10};
  node root;
 //color 1-red 0-black
 //printf("enter the number of elements\n");
-//scanf("%d",&n);
-//for(i=0;i<n;i++)
- //{
-   //scanf("%d",&a[i]);
- //}
+scanf("%d",&n);
+for(i=0;i<n;i++)
+ {
+  scanf("%d",&a[i]);
+ }
  for(i=0;i<n;i++)
   {
     if(i==0)

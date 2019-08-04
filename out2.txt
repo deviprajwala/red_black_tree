@@ -1,10 +1,42 @@
-Item inserted is 5
-Item inserted is 4
-Item inserted is 3
-Item inserted is 2
 Item inserted is 1
+Item inserted is 3
+Item inserted is 5
+Item inserted is 7
+Item inserted is 9
+Item inserted is 2
+Item inserted is 4
+Item inserted is 6
+Item inserted is 8
+Item inserted is 10
+Item inserted is 11
+Item inserted is 13
+Item inserted is 15
+Item inserted is 17
+Item inserted is 19
+Item inserted is 12
+Item inserted is 14
+Item inserted is 16
+Item inserted is 18
+Item inserted is 20
 successful insertion
 inorder traversal is
-1 red
-2 black
-3 red
+1 black
+2 red
+3 black
+4 red
+5 black
+6 red
+7 black
+8 black
+9 black
+10 black
+11 red
+12 red
+13 black
+14 red
+15 black
+16 black
+17 red
+18 red
+19 black
+20 red
